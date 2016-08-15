@@ -1,0 +1,19 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname bst-remove) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+(define t 
+  (make-node 5 "" 
+             (make-node 3 "" 
+                        (make-node 2 "" 
+                                   (make-node 1 "" empty empty) 
+                                   empty) 
+                        (make-node 4 "" empty empty)) 
+             (make-node 7 "" 
+                        (make-node 6 "" empty empty) 
+                        empty)))
+
+;; Contrast:
+;; bst-remove: Bst Num -> Bst
+;; Purpose: remove an element in the binary search tree.
+;; Example:
+(check-expect )

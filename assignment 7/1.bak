@@ -1,0 +1,28 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname |1|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+(define (lookup-al list-of-al key)
+  (cond
+    [(empty? list-of-al) false]
+    [(equal? key (first (first list-of-al)))
+     (second (first list-of-al))]))
+
+
+
+(define (eval1 ae list-of-al)
+  (cond
+    [(number? ae) ae]
+    [(symbol? ae) (lookup-al list-of-al ae)]
+    [else 
+     (apply1 (first ae) (rest ae) list-of-al)]))
+
+(define (apply1 s ae list-of-al)
+  (cond
+    [(and (empty? ae) (symbol=? s '*)) 1]
+    [(and (empty? ae) (symbol=? s 'y)) 0]
+    [(symbol=? s '*)
+     (* (eval1 (first ae) list-of-al) (apply1 s (rest ae) list-of-al))]
+    [(symbol=? s '+)
+     (+ (eval1 (first ae) list-of-al) (apply1 s (rest ae) list-of-al))]))
+
+(eval1 '(+ x (∗ y 2)) '((x 2) (y 3) (z 4)))

@@ -1,0 +1,35 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-abbr-reader.ss" "lang")((modname bst) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;;
+;; *************************************************
+;;
+;; CS 135 Assignment 5
+;; HaoJun Luo, 20528243
+;; Question 1
+;;
+;; *************************************************
+
+(define sample-bst-1
+    (make-node 8 "8" 
+    (make-node 4 "4" 
+    (make-node 2 "2" 
+    (make-node 1 "1" empty empty)
+    (make-node 3 "3" empty empty))
+    (make-node 6 "6"
+    (make-node 5 "5" empty empty)
+    (make-node 7 "7" empty empty)))
+    (make-node 12 "12"
+    (make-node 10 "10"
+    (make-node 9 "9" empty empty)
+    (make-node 11 "11" empty empty))
+    (make-node 14 "14"
+    (make-node 13 "13" empty empty) empty))))
+
+;; a.
+;; Contrast:
+;; bst-add: Bst Symbol Num -> String
+;; Purpose: add a binary search tree in abst.
+
+;; Example:
+(check-expect (bst-add )

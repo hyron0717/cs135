@@ -1,0 +1,16 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname area) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;; Contract:
+;; copy-first-to-end: listof Posn -> listof Posn
+;; Purpose: add the first element to the end.
+;; Example:
+
+
+;; Definition:
+(define (copy-first-to-end list-of-posn)
+  (cond
+    [(empty? (rest list-of-posn))  (cons (first list-of-posn))]
+    [else (cons (first list-of-posn)
+                (copy-first-to-end (rest list-of-posn)))])
+ (append (first list-of-posn) empty))

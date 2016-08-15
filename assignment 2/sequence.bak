@@ -1,0 +1,17 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname sequence) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;; 2.
+;; a.
+;; Contrart: Num Num Num -> Boolean
+;; Purpose: Determine the numbers whether is arithmetic sequence or not
+;; Example: 
+(check-expect (arith-seq-cond? 1 2 3) 'true)
+(check-expect (arith-seq-cond? 5 7 9) 'true)
+;;Defination:
+(define (arith-seq-cond? a b c) 
+  (cond [(= (- b a) (- c b)) 'true]
+        [else 'false]))
+;;Test:
+(check-expect (arith-seq-cond? 9 7 5) 'true)
+(check-expect (arith-seq-cond? 4 6 7) 'false)

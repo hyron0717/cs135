@@ -1,0 +1,16 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname square) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;; 4.
+(define-struct Line (slope intercept))
+;; A line = (make-Line Num Num)
+;; my-Line-fn: Line -> Any
+(define (my-Line-fn info)
+  (... (Line-slope info)...
+   ... (Line-intercpet info)...))
+
+;; Contract: four-square?: Line Line Line Line -> Boolean
+;; Purpose: determine whether four lines can make a square.
+;; Exapmle:
+(check-expect (four-square? (make-Line 1 0) (make-Line -1 0) (make-Line 1 1) (make-Line -1 1)) ture)
+;; Defination:

@@ -1,0 +1,30 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname bool-expr-starter) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+
+;; A boolean expression (Bexp) is either
+;; * a Boolean value (true or false),
+;; * a comparison expression (Cexp), or
+;; * a compound boolean expression (Cbexp)
+
+(define-struct comp-exp (fn arg1 arg2))
+;; A comparison expression (Cexp) is a structure
+;; (make-comp-exp f a1 a2), where
+;; * f is a Symbol from the set '>, '<, and '=
+;; * a1 is a Num
+;; * a2 is a Num
+
+(define-struct compoundb-exp (op args))
+;; A compound boolean expression (Cbexp) is a structure
+;; (make-compoundb-exp b alist), where
+;; * b is a Symbol from the set 'and and 'or
+;; * alist is a Cbexplist
+
+;; A Cbexplist is either
+;; * empty, or
+;; * (cons e alist), where e is a Bexp and alist is a Cbexplist
+
+
+;; Templates (part (a))
+
+;; bool-eval (part (b))

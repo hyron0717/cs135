@@ -1,0 +1,90 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname a05) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;;
+;; *************************************************
+;;
+;; CS 135 Assignment 5
+;; HaoJun Luo, 20528243
+;;
+;; *************************************************
+
+(require "namelist.rkt")
+;; 1.
+;; A nameinfo = (make-nameinfo (String Int Int[1, 1000] Symbol)
+;; my-nameinfo-fn: nameinfo -> Any
+(define (my-nameinfo-fn info)
+  (... (nameinfo-name info)...
+       (nameinfo-decade info)...
+       (nameinfo-rank info)...
+       (nameinfo-gender info)...))
+
+;; list-of-nameinfo is one of:
+;; empty
+;; (cons nameinfo (list-of-nameinfo))
+
+;; Template: 
+;; Namelist: listof nameinfo -> Any
+(define (Namelist lon)
+  (cond
+    [(empty? lon) ...]
+    [else (...(first lon) ...
+              (Namelist (rest lon)) ...)]))
+
+;; 2.
+;; Contract: 
+;; find-rank: Namelist String Symbol Int -> Union( Int[1,1000] false)
+
+;; Purpose: search the person in the nama list and output the rank.
+;; Example:
+
+;; Definition:
+(define (find-rank namelist search-name search-gender search-decade)
+  (cond 
+    [(empty? namelist) false]
+    [else 
+     (cond 
+       [(and (equal? (nameinfo-name (first namelist)) search-name)
+             (equal? (nameinfo-gender (first namelist)) search-gender)
+             (= (nameinfo-decade (first namelist)) search-decade))
+        (nameinfo-rank (first namelist))]
+       [else (find-rank (rest namelist) search-name search-gender search-decade)])]))
+
+;; Test:
+
+
+;; 3.
+;; Contract:
+;; collect-name: Namelist String Symbol -> listof nameinfo
+
+;; Purpose: find the information about the people with same name.
+;; Example:
+
+;; Defination:
+(define (collect-name namelist search-name search-gender)
+  (cond
+    [(empty? namelist) empty]
+    [else
+     (cond
+       [(and (equal? (nameinfo-name (first namelist)) search-name)
+             (equal? (nameinfo-gender (first namelist)) search-gender))
+        (cons (first namelist) (collect-name (rest namelist) search-name search-gender))]
+       [else (collect-name (rest namelist) search-name search-gender)])]))
+
+;; 4.
+;; Contract:
+;; first-n: Namelist Nat -> Union (listof nameinfo Symbol)
+
+;; Purpose: show from first to n elements in the list.
+;; Example:
+
+;; Defination: 
+(define (first-n list number)
+  (cond 
+    [(empty? list) (cons 'NotEnoughItems empty)]
+    [else 
+     (cond
+       [(= number 0) empty]
+       [else (cons (first list) (first-n (rest list) (sub1 number)))])]))
+
+

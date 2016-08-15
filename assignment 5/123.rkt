@@ -1,0 +1,37 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-abbr-reader.ss" "lang")((modname |123|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;; 4.
+(require "namelist.rkt")
+(define name1 (make-nameinfo "Finley" 2000 1000 'Female))
+(define name2 (make-nameinfo "John" 1890 1 'Male))
+(define name3 (make-nameinfo "Mary" 1890 1 'Female))
+(define name4 (make-nameinfo "John" 2000 30 'Male))
+(define name5 (make-nameinfo "John" 2000 2 'Female))
+(define name6 (make-nameinfo "John" 2000 500 'Male))
+;; Contract:
+;; first-n: (listof Any) Nat -> (Union (listof Any) Symbol)
+
+;; Purpose: show from first to n elements in the list.
+;; Example:
+(check-expect (first-n empty 2) 'NotEnoughItems)
+(check-expect (first-n (list name1 name2 name3 name4) 2) 
+              (list (make-nameinfo "Finley" 2000 1000 'Female)
+                    (make-nameinfo "John" 1890 1 'Male)))
+
+;; Defination: 
+(define (first-n list number)
+  (cond 
+    [(empty? list) 'NotEnoughItems]
+    [else 
+     (cond
+       [(= number 0) empty]
+       [else (cons (first list) (first-n (rest list) (sub1 number)))])]))
+
+;; Test
+(check-expect (first-n (list name1 name2 name3 name4) 5) 'NotEnoughItems)
+
+(check-expect (first-n (list 1 2 3 4 5) 4)
+              (list 1 2 3 4))
+
+(check-expect (first-n (list 1 2 3 4 5) 6) 'NotEnoughItems)

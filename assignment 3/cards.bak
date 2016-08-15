@@ -1,0 +1,11 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname cards) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;; 3.
+;; a.
+(define-struct Card (suit rank))
+;; A Card = (make-Card Symbol Int)
+;; my-Card-fn: Card -> Any
+(define (my-Card-fn info)
+  (... (Card-suit info)...
+   ... (Card-rank info)...))

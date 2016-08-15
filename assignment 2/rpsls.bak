@@ -1,0 +1,35 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname rpsls) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;; 4.
+;; Contract: Symbol Symbol ->Symbol
+;; Purpose: Determind the winner in “Rock-Paper-Scissors-Lizard-Spock"
+;; Example:
+(check-expect (rpsls 'lizard 'paper) 'player1)
+(check-expect (rpsls 'lizard 'lizard) 'tie)
+;; Defination:
+(define (rpsls action1 action2)
+  (cond [(and (symbol=? action1 'scissors) (symbol=? action2 'scissors)) 'tie]
+        [(and (symbol=? action1 'scissors) (or (symbol=? action2 'rock) (symbol=? action2 'spock))) 'player2]
+        [(and (symbol=? action1 'scissors) (or (symbol=? action2 'paper) (symbol=? action2 'lizard))) 'player1]
+        
+        [(and (symbol=? action1 'paper) (symbol=? action2 'paper)) 'tie]
+        [(and (symbol=? action1 'paper) (or (symbol=? action2 'scissors) (symbol=? action2 'lizard))) 'player2]
+        [(and (symbol=? action1 'paper) (or (symbol=? action2 'rock) (symbol=? action2 'spock))) 'player1]
+        
+        [(and (symbol=? action1 'rock) (symbol=? action2 'rock)) 'tie]
+        [(and (symbol=? action1 'rock) (or (symbol=? action2 'spock) (symbol=? action2 'paper))) 'player2]
+        [(and (symbol=? action1 'rock) (or (symbol=? action2 'lizard) (symbol=? action2 'scissors))) 'player1]
+        
+        [(and (symbol=? action1 'lizard) (symbol=? action2 'lizard)) 'tie]
+        [(and (symbol=? action1 'lizard) (or (symbol=? action2 'scissors) (symbol=? action2 'rock))) 'player2]
+        [(and (symbol=? action1 'lizard) (or (symbol=? action2 'spock) (symbol=? action2 'paper))) 'player1]
+        
+        [(and (symbol=? action1 'spock) (symbol=? action2 'spock)) 'tie]
+        [(and (symbol=? action1 'spock) (or (symbol=? action2 'paper) (symbol=? action2 'lizard))) 'player2]
+        [(and (symbol=? action1 'spock) (or (symbol=? action2 'scissors) (symbol=? action2 'rock))) 'player1]))
+;; Test: 
+(check-expect (rpsls 'scissors 'paper) 'player1)
+(check-expect (rpsls 'spock 'rock) 'player1)
+(check-expect (rpsls 'lizard 'scissors) 'player2)
+(check-expect (rpsls 'rock 'spock) 'player2)
